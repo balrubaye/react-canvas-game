@@ -2,15 +2,25 @@
 import React, {Component} from 'react';
 
 import {render} from 'react-dom';
+import MyCanvas from './myCanvas.jsx'
 
-class APP extends Component{
+ class App extends Component {
 
-	render(){
+      constructor() {
+        super();
+      }
 
-		return (
-				<p> Hello World </p>
-			);
-	}
-}
 
-render(<APP /> , document.getElementById('container'));
+      render() {
+        return ( < div >
+          < span className = 'info' >
+          Use[A], [D]-- - [←], [→] to MOVE Circles nn< /span>
+
+          < MyCanvas / >
+          < /div>
+        );
+      }
+
+    }
+
+render(<App /> , document.getElementById('container'));
