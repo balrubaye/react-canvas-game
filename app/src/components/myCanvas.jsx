@@ -20,7 +20,8 @@ module.exports = class MyCanvas extends Component {
     constructor() {
 
         super();
-
+        
+      //initial state
         this.state = {
           screen: {
             width: window.innerWidth,
@@ -31,11 +32,11 @@ module.exports = class MyCanvas extends Component {
           context: null,
           circle1: {
             position: {
-              x: window.innerWidth - 40,
+              x: window.innerWidth/2 + 50,
               y: window.innerHeight / 2
             },
             color: 'green',
-            radius: 20,
+            radius: 30,
             key: {
               left: supported_keys.circle1.LEFT,
               right: supported_keys.circle1.RIGHT
@@ -43,11 +44,11 @@ module.exports = class MyCanvas extends Component {
           },
           circle2: {
             position: {
-              x: window.innerWidth / 2 - 40,
+              x: window.innerWidth / 2 - 50,
               y: window.innerHeight / 2
             },
             color: 'blue',
-            radius: 20,
+            radius: 30,
             key: {
               left: supported_keys.circle2.LEFT,
               right: supported_keys.circle2.RIGHT

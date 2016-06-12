@@ -14,7 +14,7 @@ import MyCanvas from './myCanvas.jsx'
       render() {
         return ( < div >
           < span className = 'info' >
-          Use[A], [D]-- - [←], [→] to MOVE Circles nn< /span>
+          Use[A], [D] --- [←], [→] to MOVE Circles < /span>
 
           < MyCanvas / >
           < /div>
