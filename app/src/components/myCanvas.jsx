@@ -6,7 +6,9 @@ import Circle from './circle';
 const supported_keys = {
   circle1: {
     LEFT: 37,
-    RIGHT: 39
+    RIGHT: 39,
+    UP: 38,
+    DOWN: 40
   },
   circle2: {
     LEFT: 65,
@@ -39,8 +41,11 @@ module.exports = class MyCanvas extends Component {
             radius: 30,
             key: {
               left: supported_keys.circle1.LEFT,
-              right: supported_keys.circle1.RIGHT
-            }
+              right: supported_keys.circle1.RIGHT,
+              up: supported_keys.circle1.UP,
+              down: supported_keys.circle1.DOWN
+            },
+            velocity:6
           },
           circle2: {
             position: {
@@ -65,12 +70,15 @@ module.exports = class MyCanvas extends Component {
 
     //handle keydown event
     handleKeyDown(e) {
+      console.log('-----' + this.state.circle1.velocity);
+      let velocity =this.state.circle1.velocity;
+      let circle1 = this.state.circle1;
 
       if (e.keyCode === this.state.circle1.key.left) {
-        let circle1 = this.state.circle1;
+        
         if (circle1.position.x - circle1.radius > 0) {
-          let circle1 = this.state.circle1;
-          circle1.position.x -= 3;
+          
+          circle1.position.x -= velocity;
 
           this.setState({
             circle1: circle1
@@ -79,20 +87,48 @@ module.exports = class MyCanvas extends Component {
         }
       } else if (e.keyCode === this.state.circle1.key.right) {
 
-        let circle1 = this.state.circle1;
+        
 
         if (circle1.position.x + circle1.radius < this.state.screen.width) {
-          let circle1 = this.state.circle1;
-          circle1.position.x += 3;
+          
+          circle1.position.x += velocity;
 
           this.setState({
             circle1: circle1
           });
         }
-      } else if (e.keyCode === this.state.circle2.key.left) {
+      }  else if(e.keyCode === this.state.circle1.key.up){
+
+        
+          console.log('UP ');
+        if (circle1.position.y - circle1.radius > 0) {
+          
+          circle1.position.y -= velocity;
+
+          this.setState({
+            circle1: circle1
+          });
+        }
+
+      } else if( e.keyCode === this.state.circle1.key.down)
+      {
+         
+          console.log('DOWN');
+
+        if (circle1.position.y + circle1.radius < this.state.screen.height) {
+          
+          circle1.position.y += velocity;
+
+          this.setState({
+            circle1: circle1
+          });
+        }
+      }
+
+       else if (e.keyCode === this.state.circle2.key.left) {
         let circle2 = this.state.circle2;
         if (circle2.position.x - circle2.radius > 0) {
-          circle2.position.x -= 3
+          circle2.position.x -= velocity
 
           this.setState({
             circle2: circle2
@@ -102,7 +138,7 @@ module.exports = class MyCanvas extends Component {
       } else if (e.keyCode === this.state.circle2.key.right) {
         let circle2 = this.state.circle2;
         if (circle2.position.x + circle2.radius < this.state.screen.width) {
-          circle2.position.x += 3;
+          circle2.position.x += velocity;
 
           this.setState({
             circle2: circle2
@@ -169,6 +205,9 @@ module.exports = class MyCanvas extends Component {
         radius: 20,
         context: context
       });
+
+      var position2= this.getCircle2Position();
+      // draw the second circle 
       this.circle2.draw({
         position: this.state.circle2.position,
         radius: 20,
@@ -189,6 +228,34 @@ module.exports = class MyCanvas extends Component {
       }
 
     }
+
+
+    getCircle2Position(){
+      let objX= this.state.circle1.position.x;
+      let objY= this.state.circle1.position.y;
+
+      let curX= this.state.circle2.position.x;
+      let curY= this.state.circle2.position.y;
+      let circle2=this.state.circle2;
+
+      if( objX > curX)
+      {
+        curX +=1;
+      }
+      else{ curX -=3}
+
+      if( objY > curY)
+      {
+        curY +=1;
+      }  
+      else{ curY -=3;}
+
+      circle2.position={ x: curX, y:curY};
+
+      this.setState({circle2: circle2});
+
+    }
+
 
     render() {
 
