@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Circle from './circle';
+import Popup from './popup';
 
 
 
@@ -59,6 +60,7 @@ module.exports = class MyCanvas extends Component {
               right: supported_keys.circle2.RIGHT
             }
           },
+          gameState:'ready'
 
         };
 
@@ -256,10 +258,32 @@ module.exports = class MyCanvas extends Component {
 
     }
 
+     changeGameState(arg){
+      this.setState({gameState: arg});
+     } 
+
+    showPopup(){
+
+      let title, className;
+      console.log('show popup');
+      if(this.state.gameState === 'ready')
+      {
+        title='Welcome to the best game!';
+        className='show';
+      }
+
+      return (
+          <Popup headerTitle={title} whenClicked={this.changeGameState('in')}
+           className={className}/>
+        );
+    }
 
     render() {
 
       return ( < div >
+
+         {this.showPopup()}
+
         < canvas ref = 'canvas'
         width = {
           this.state.screen.width * this.state.screen.ratio

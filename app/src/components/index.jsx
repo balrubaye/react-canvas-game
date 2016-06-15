@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 
 import {render} from 'react-dom';
 import MyCanvas from './myCanvas.jsx'
+import P from './popup'
 
  class App extends Component {
 

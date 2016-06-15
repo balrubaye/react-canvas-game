@@ -9,3 +9,17 @@ body{
   color: gray;
   width: 38%;
 }
+
+.popup{
+	display: hidden;
+	width: 20%;
+	height: 20%;
+	position: absolute;;
+	top: 200px;
+	left: 300px
+
+}
+
+.show{
+	display: block;
+}
