@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Circle from './circle';
 import Popup from './popup';
-
+import Actions from '../actions.js';
 
 
 const supported_keys = {
@@ -159,7 +159,7 @@ module.exports = class MyCanvas extends Component {
         }
       });
 
-      console.log('resize--');
+      
     }
 
 
@@ -226,6 +226,7 @@ module.exports = class MyCanvas extends Component {
     checkStatus(arg1, arg2) {
       let diff = (arg1.position.x + arg1.radius) - (arg2.position.x + arg2.radius);
       if (Math.abs(diff) < arg1.radius * 2) {
+        Actions.endGame();
         console.log('---The Circles collided ---');
       }
 
@@ -258,31 +259,15 @@ module.exports = class MyCanvas extends Component {
 
     }
 
-     changeGameState(arg){
-      this.setState({gameState: arg});
-     } 
+     
 
-    showPopup(){
-
-      let title, className;
-      console.log('show popup');
-      if(this.state.gameState === 'ready')
-      {
-        title='Welcome to the best game!';
-        className='show';
-      }
-
-      return (
-          <Popup headerTitle={title} whenClicked={this.changeGameState('in')}
-           className={className}/>
-        );
-    }
+    
 
     render() {
 
       return ( < div >
 
-         {this.showPopup()}
+         
 
         < canvas ref = 'canvas'
         width = {

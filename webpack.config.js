@@ -16,6 +16,9 @@ var config={
 			include:SRC_DIR,
 			loader:'babel'
 		}]
+	},
+	resolve: {
+		extensions: [ '', '.js', '.jsx']
 	}
 }
 
