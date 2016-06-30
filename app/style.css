@@ -20,6 +20,7 @@ body{
 	border: 1px solid gray;
 	border-radius: 10px;
 	text-align: center;
+	box-shadow: 10px 10px 5px gray;
 
 }
 .popup h3{
@@ -28,4 +29,9 @@ body{
 
 .show{
 	display: block;
+}
+
+input[type='button']{
+	padding: 5px;
+	background: #ff8844;
 }
